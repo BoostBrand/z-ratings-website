@@ -1,0 +1,23 @@
+{
+  "name": "Z Ratings - Cannabis Inventory Risk Intelligence",
+  "short_name": "Z Ratings",
+  "description": "Inventory risk intelligence, brand ratings, SKU risk analysis, inventory budgets, and liquidation guidance for cannabis retailers and operators.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#173D2C",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

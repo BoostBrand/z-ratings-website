@@ -1,0 +1,94 @@
+{
+  "business": "Z Ratings",
+  "website": "https://zratings.net/",
+  "visible_wordmark_preserved_from_logo_draft": "Rating",
+  "website_green_hex_used": "#173D2C",
+  "seo_keywords": [
+    "Z Ratings",
+    "cannabis inventory risk intelligence",
+    "cannabis retail analytics",
+    "brand ratings",
+    "SKU risk analysis",
+    "inventory budgets",
+    "liquidation guidance",
+    "dispensary purchasing",
+    "cannabis operators",
+    "product recommendations"
+  ],
+  "default_alt_text": "Z Ratings cannabis inventory risk intelligence logo for cannabis retailers, operators, and purchasing teams",
+  "assets": [
+    {
+      "type": "full_logo",
+      "color": "black",
+      "png": "z-ratings-cannabis-inventory-risk-intelligence-full-logo-black-transparent.png",
+      "svg": "z-ratings-cannabis-inventory-risk-intelligence-full-logo-black-transparent.svg",
+      "alt": "Z Ratings cannabis inventory risk intelligence logo in black for cannabis retailers and operators",
+      "title": "Z Ratings Cannabis Inventory Risk Intelligence Logo - Black Transparent",
+      "description": "Z Ratings logo asset for cannabis inventory risk intelligence, brand ratings, SKU risk analysis, product recommendations, inventory budgets, liquidation guidance, and smarter cannabis retail purchasing decisions. Transparent black full logo preserving the approved two-square Z mark and Rating wordmark."
+    },
+    {
+      "type": "z_mark_favicon",
+      "color": "black",
+      "png": "z-ratings-cannabis-inventory-risk-intelligence-z-mark-favicon-black-transparent.png",
+      "svg": "z-ratings-cannabis-inventory-risk-intelligence-z-mark-favicon-black-transparent.svg",
+      "alt": "Z Ratings Z mark favicon in black for cannabis inventory risk intelligence",
+      "title": "Z Ratings Z Mark Favicon - Black Transparent",
+      "description": "Z Ratings logo asset for cannabis inventory risk intelligence, brand ratings, SKU risk analysis, product recommendations, inventory budgets, liquidation guidance, and smarter cannabis retail purchasing decisions. Transparent black favicon / brand mark with only the two-square Z icon."
+    },
+    {
+      "type": "full_logo",
+      "color": "white",
+      "png": "z-ratings-cannabis-inventory-risk-intelligence-full-logo-white-transparent.png",
+      "svg": "z-ratings-cannabis-inventory-risk-intelligence-full-logo-white-transparent.svg",
+      "alt": "Z Ratings cannabis inventory risk intelligence logo in white for cannabis retailers and operators",
+      "title": "Z Ratings Cannabis Inventory Risk Intelligence Logo - White Transparent",
+      "description": "Z Ratings logo asset for cannabis inventory risk intelligence, brand ratings, SKU risk analysis, product recommendations, inventory budgets, liquidation guidance, and smarter cannabis retail purchasing decisions. Transparent white full logo preserving the approved two-square Z mark and Rating wordmark."
+    },
+    {
+      "type": "z_mark_favicon",
+      "color": "white",
+      "png": "z-ratings-cannabis-inventory-risk-intelligence-z-mark-favicon-white-transparent.png",
+      "svg": "z-ratings-cannabis-inventory-risk-intelligence-z-mark-favicon-white-transparent.svg",
+      "alt": "Z Ratings Z mark favicon in white for cannabis inventory risk intelligence",
+      "title": "Z Ratings Z Mark Favicon - White Transparent",
+      "description": "Z Ratings logo asset for cannabis inventory risk intelligence, brand ratings, SKU risk analysis, product recommendations, inventory budgets, liquidation guidance, and smarter cannabis retail purchasing decisions. Transparent white favicon / brand mark with only the two-square Z icon."
+    },
+    {
+      "type": "full_logo",
+      "color": "green",
+      "png": "z-ratings-cannabis-inventory-risk-intelligence-full-logo-green-transparent.png",
+      "svg": "z-ratings-cannabis-inventory-risk-intelligence-full-logo-green-transparent.svg",
+      "alt": "Z Ratings cannabis inventory risk intelligence logo in green for cannabis retailers and operators",
+      "title": "Z Ratings Cannabis Inventory Risk Intelligence Logo - Green Transparent",
+      "description": "Z Ratings logo asset for cannabis inventory risk intelligence, brand ratings, SKU risk analysis, product recommendations, inventory budgets, liquidation guidance, and smarter cannabis retail purchasing decisions. Transparent green full logo preserving the approved two-square Z mark and Rating wordmark."
+    },
+    {
+      "type": "z_mark_favicon",
+      "color": "green",
+      "png": "z-ratings-cannabis-inventory-risk-intelligence-z-mark-favicon-green-transparent.png",
+      "svg": "z-ratings-cannabis-inventory-risk-intelligence-z-mark-favicon-green-transparent.svg",
+      "alt": "Z Ratings Z mark favicon in green for cannabis inventory risk intelligence",
+      "title": "Z Ratings Z Mark Favicon - Green Transparent",
+      "description": "Z Ratings logo asset for cannabis inventory risk intelligence, brand ratings, SKU risk analysis, product recommendations, inventory budgets, liquidation guidance, and smarter cannabis retail purchasing decisions. Transparent green favicon / brand mark with only the two-square Z icon."
+    }
+  ],
+  "standard_favicon_files": [
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "favicon-48x48.png",
+    "apple-touch-icon.png",
+    "android-chrome-192x192.png",
+    "android-chrome-512x512.png",
+    "favicon.ico"
+  ],
+  "recommended_html": {
+    "logo_image_alt": "Z Ratings cannabis inventory risk intelligence logo for cannabis retailers and operators",
+    "logo_image_title": "Z Ratings - Cannabis Inventory Risk Intelligence",
+    "favicon_links": [
+      "<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\">",
+      "<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/favicon-16x16.png\">",
+      "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/apple-touch-icon.png\">",
+      "<link rel=\"manifest\" href=\"/site.webmanifest\">"
+    ]
+  }
+}

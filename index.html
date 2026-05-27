@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>Z Ratings — Inventory Risk Intelligence for Cannabis Retailers</title>
+  <meta name="description" content="Z Ratings turns brand and SKU performance data into clear ratings, inventory budgets, and liquidation guidance — so cannabis retailers buy with financial confidence, not instinct." />
+  <link rel="canonical" href="https://zratings.net/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0C8B5C" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Z Ratings" />
+  <meta property="og:title" content="Z Ratings — Inventory Risk Intelligence for Cannabis Retailers" />
+  <meta property="og:description" content="Brand & SKU ratings, inventory budgets, and cash-recovery guidance. Stop buying inventory on instinct." />
+  <meta property="og:url" content="https://zratings.net/" />
+  <meta property="og:image" content="https://zratings.net/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Z Ratings — inventory risk intelligence for cannabis retail" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Z Ratings — Inventory Risk Intelligence" />
+  <meta name="twitter:description" content="Turn brand & SKU data into ratings, budgets, and liquidation guidance for cannabis retail." />
+  <meta name="twitter:image" content="https://zratings.net/og-image.png" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Fonts: distinctive grotesk display + clean body + mono numerals -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper:   '#F4F6F2',
+            surface: '#FFFFFF',
+            ink:     '#0A1A13',
+            body:    '#4C5A53',
+            muted:   '#8A968F',
+            line:    '#E3E8E0',
+            brand:   { DEFAULT: '#0C8B5C', 600: '#0A7A50', 700: '#075B3E', 50: '#E8F4ED', 100: '#D2EADE' },
+            amber:   { DEFAULT: '#C58A21', 50: '#F7EFDD' },
+            risk:    { DEFAULT: '#CB4A3B', 50: '#F8E4E1' },
+          },
+          fontFamily: {
+            display: ['"Schibsted Grotesk"', 'system-ui', 'sans-serif'],
+            sans:    ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+            mono:    ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+          },
+          boxShadow: {
+            card:  '0 1px 2px rgba(10,26,19,.04), 0 8px 24px -12px rgba(10,26,19,.12)',
+            lift:  '0 2px 4px rgba(10,26,19,.05), 0 24px 48px -20px rgba(12,139,92,.28)',
+            float: '0 12px 32px -8px rgba(10,26,19,.18), 0 2px 8px rgba(10,26,19,.06)',
+          },
+          letterSpacing: { tightest: '-0.04em' },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { --ease-spring: cubic-bezier(.22,1,.36,1); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Hanken Grotesk', system-ui, sans-serif; background: #F4F6F2; color: #4C5A53; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Schibsted Grotesk', system-ui, sans-serif; color: #0A1A13; }
+    .font-display { font-family: 'Schibsted Grotesk', system-ui, sans-serif; }
+    .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+
+    /* Grain + atmospheric mesh background */
+    .mesh {
+      background:
+        radial-gradient(60% 50% at 12% 8%, rgba(12,139,92,.10), transparent 60%),
+        radial-gradient(50% 40% at 92% 4%, rgba(12,139,92,.07), transparent 55%),
+        radial-gradient(70% 60% at 50% 110%, rgba(7,91,62,.08), transparent 60%);
+    }
+    .grain::before {
+      content:''; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.5; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    }
+    .dotgrid {
+      background-image: radial-gradient(rgba(10,26,19,.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Reveal on scroll */
+    .reveal { opacity:0; transform: translateY(18px); transition: opacity .7s var(--ease-spring), transform .7s var(--ease-spring); }
+    .reveal.in { opacity:1; transform: none; }
+    [data-delay="1"]{ transition-delay:.06s } [data-delay="2"]{ transition-delay:.12s }
+    [data-delay="3"]{ transition-delay:.18s } [data-delay="4"]{ transition-delay:.24s }
+    [data-delay="5"]{ transition-delay:.30s }
+
+    /* Animated meter bars */
+    .meter > i { display:block; height:100%; width:0; border-radius:999px; transition: width 1.1s var(--ease-spring); }
+    .meter.in > i { width: var(--w); }
+
+    /* Buttons */
+    .btn { position:relative; transition: transform .25s var(--ease-spring), box-shadow .25s var(--ease-spring), background-color .2s, color .2s, border-color .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn:focus-visible { outline: 2px solid #0C8B5C; outline-offset: 3px; }
+
+    .card-hover { transition: transform .35s var(--ease-spring), box-shadow .35s var(--ease-spring), border-color .35s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(10,26,19,.05), 0 28px 56px -22px rgba(12,139,92,.30); border-color: rgba(12,139,92,.30); }
+
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #0C8B5C; outline-offset: 2px; border-radius: 6px; }
+
+    /* FAQ accordion */
+    details > summary { list-style:none; cursor:pointer; }
+    details > summary::-webkit-details-marker { display:none; }
+    details .chev { transition: transform .3s var(--ease-spring); }
+    details[open] .chev { transform: rotate(45deg); }
+
+    .ticker { animation: scrollx 28s linear infinite; }
+    @keyframes scrollx { to { transform: translateX(-50%); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,.meter>i,.btn,.card-hover,.ticker { transition:none!important; animation:none!important; transform:none!important; opacity:1!important; }
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-brand/20 selection:text-brand-700">
+
+  <!-- ===================== NAV ===================== -->
+  <header class="sticky top-0 z-50">
+    <div class="backdrop-blur-md bg-paper/80 border-b border-line">
+      <nav class="mx-auto max-w-7xl px-5 lg:px-8 h-[68px] flex items-center justify-between" aria-label="Primary">
+        <a href="#top" class="flex items-center gap-2.5 group" aria-label="Z Ratings home">
+          <img src="assets/z-mark-green.svg" alt="" width="36" height="36" class="h-9 w-9 transition-transform group-hover:-translate-y-0.5" />
+          <span class="leading-none">
+            <span class="block font-display font-extrabold text-ink text-[17px] tracking-tight">Z&nbsp;Ratings</span>
+            <span class="block num text-[10px] uppercase tracking-[.18em] text-muted mt-0.5">Inventory Risk Intelligence</span>
+          </span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-body">
+          <li><a class="hover:text-ink transition-colors" href="#product">Product</a></li>
+          <li><a class="hover:text-ink transition-colors" href="howitworks.html">How it works</a></li>
+          <li><a class="hover:text-ink transition-colors" href="solutions.html">Solutions</a></li>
+          <li><a class="hover:text-ink transition-colors" href="about.html">About</a></li>
+          <li><a class="hover:text-ink transition-colors" href="packages.html">Packages</a></li>
+          <li><a class="hover:text-ink transition-colors" href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2.5">
+          <a href="packages.html" class="btn hidden sm:inline-flex items-center rounded-full border border-line bg-surface px-4 py-2 text-[14px] font-semibold text-ink hover:border-brand/40">View Packages</a>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[14px] font-semibold text-white hover:bg-brand-700 shadow-card">
+            Book a Demo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button id="menuBtn" class="lg:hidden grid place-items-center h-10 w-10 rounded-lg border border-line bg-surface" aria-label="Open menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#0A1A13" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="lg:hidden hidden border-b border-line bg-paper/95 backdrop-blur-md">
+      <div class="mx-auto max-w-7xl px-5 py-4 grid gap-1 text-[15px] font-medium text-body">
+        <a class="py-2.5 hover:text-ink" href="#product">Product</a>
+        <a class="py-2.5 hover:text-ink" href="howitworks.html">How it works</a>
+        <a class="py-2.5 hover:text-ink" href="solutions.html">Solutions</a>
+        <a class="py-2.5 hover:text-ink" href="about.html">About</a>
+        <a class="py-2.5 hover:text-ink" href="packages.html">Packages</a>
+        <a class="py-2.5 hover:text-ink" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="relative overflow-hidden mesh grain">
+      <div class="absolute inset-0 dotgrid opacity-40" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8 pt-14 lg:pt-20 pb-16 lg:pb-24 grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-10 items-center">
+
+        <div>
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand-50 px-3 py-1.5 text-[12.5px] font-semibold text-brand-700">
+            <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full rounded-full bg-brand opacity-60 animate-ping"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-brand"></span></span>
+            Built for cannabis retailers, operators &amp; finance teams
+          </div>
+
+          <h1 class="reveal mt-6 font-display font-extrabold text-ink text-[44px] sm:text-[58px] lg:text-[64px] leading-[0.98] tracking-tightest" data-delay="1">
+            Stop buying inventory on instinct.
+            <span class="block text-brand">Start buying with financial confidence.</span>
+          </h1>
+
+          <p class="reveal mt-6 max-w-xl text-[17px] leading-[1.7] text-body" data-delay="2">
+            Z&nbsp;Ratings turns complex brand and SKU performance data into clear ratings, product recommendations, inventory budgets, and liquidation guidance — so you protect cash flow and make smarter purchasing decisions.
+          </p>
+
+          <div class="reveal mt-8 flex flex-wrap items-center gap-3" data-delay="3">
+            <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-[15px] font-bold text-white shadow-lift hover:bg-brand-600">
+              Request a Live Demo
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="howitworks.html" class="btn inline-flex items-center gap-2 rounded-full border border-line bg-surface px-6 py-3.5 text-[15px] font-bold text-ink hover:border-brand/40">
+              See How It Works
+            </a>
+          </div>
+
+          <dl class="reveal mt-10 grid grid-cols-3 gap-5 max-w-md" data-delay="4">
+            <div>
+              <dt class="num text-[26px] font-semibold text-ink" data-count="2400" data-suffix="+">0</dt>
+              <dd class="text-[13px] text-muted mt-0.5">SKUs scored weekly</dd>
+            </div>
+            <div class="border-l border-line pl-5">
+              <dt class="num text-[26px] font-semibold text-ink" data-count="18" data-prefix="$" data-suffix="M+">0</dt>
+              <dd class="text-[13px] text-muted mt-0.5">cash freed for clients</dd>
+            </div>
+            <div class="border-l border-line pl-5">
+              <dt class="num text-[26px] font-semibold text-ink" data-count="92" data-suffix="%">0</dt>
+              <dd class="text-[13px] text-muted mt-0.5">forecast accuracy</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Live brand-intelligence snapshot card -->
+        <div class="reveal lg:justify-self-end w-full max-w-[460px]" data-delay="3">
+          <div class="relative">
+            <!-- floating badge -->
+            <div class="absolute -top-4 -right-3 z-20 rounded-xl bg-ink text-white px-3.5 py-2 shadow-float rotate-2">
+              <p class="num text-[10px] uppercase tracking-widest text-brand-100/80">Weekly credit</p>
+              <p class="num text-[18px] font-semibold leading-tight">$18,500</p>
+            </div>
+
+            <article class="relative rounded-2xl border border-line bg-surface shadow-float overflow-hidden">
+              <div class="flex items-center justify-between px-5 pt-5">
+                <p class="num text-[11px] uppercase tracking-[.16em] text-muted">Brand intelligence snapshot</p>
+                <span class="num text-[11px] text-muted">live</span>
+              </div>
+
+              <div class="px-5 pt-3 flex items-end justify-between gap-3">
+                <div>
+                  <h2 class="font-display font-bold text-ink text-[24px] leading-tight">Crescent Peak Labs</h2>
+                  <p class="text-[13px] text-muted">Vape &amp; concentrates · 41 active SKUs</p>
+                </div>
+                <div class="shrink-0 grid place-items-center">
+                  <span class="grid place-items-center h-14 w-14 rounded-2xl bg-brand-50 border border-brand/20">
+                    <span class="num text-[20px] font-bold text-brand-700">A-</span>
+                  </span>
+                  <span class="num text-[10px] text-muted mt-1">Risk rating</span>
+                </div>
+              </div>
+
+              <div class="px-5 py-5 space-y-3.5">
+                <div>
+                  <div class="flex justify-between text-[12.5px] mb-1"><span class="text-body">Financial strength</span><span class="num font-semibold text-ink">84</span></div>
+                  <div class="meter h-2 rounded-full bg-line" style="--w:84%"><i class="bg-brand"></i></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-[12.5px] mb-1"><span class="text-body">Sell-through velocity</span><span class="num font-semibold text-ink">68</span></div>
+                  <div class="meter h-2 rounded-full bg-line" style="--w:68%" data-delay="1"><i class="bg-brand"></i></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-[12.5px] mb-1"><span class="text-body">Discount dependency</span><span class="num font-semibold text-ink">30</span></div>
+                  <div class="meter h-2 rounded-full bg-line" style="--w:30%" data-delay="2"><i class="bg-amber"></i></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-[12.5px] mb-1"><span class="text-body">Dead-stock risk</span><span class="num font-semibold text-ink">31</span></div>
+                  <div class="meter h-2 rounded-full bg-line" style="--w:31%" data-delay="3"><i class="bg-risk"></i></div>
+                </div>
+              </div>
+
+              <div class="border-t border-line bg-paper/60 px-5 py-3.5 flex items-center justify-between">
+                <div>
+                  <p class="num text-[10px] uppercase tracking-widest text-muted">Recommended action</p>
+                  <p class="text-[14px] font-semibold text-ink">Expand top 6 SKUs · trim 4 laggards</p>
+                </div>
+                <span class="grid place-items-center h-8 w-8 rounded-lg bg-brand text-white shadow-card">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SOCIAL PROOF TICKER ===================== -->
+    <section class="border-y border-line bg-surface" aria-label="Trusted by">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8 py-6 flex flex-col sm:flex-row items-center gap-5">
+        <p class="num text-[11px] uppercase tracking-[.16em] text-muted shrink-0">Trusted across multi-store cannabis retail</p>
+        <div class="relative w-full overflow-hidden">
+          <div class="flex gap-10 ticker w-max items-center text-ink/70 font-display font-bold text-[18px]">
+            <span>RELEAF</span><span>Goat&nbsp;Global</span><span>The&nbsp;Chronic</span><span>Verdant&nbsp;Co.</span><span>Highland&nbsp;Retail</span><span>Emberline</span>
+            <span aria-hidden="true">RELEAF</span><span aria-hidden="true">Goat&nbsp;Global</span><span aria-hidden="true">The&nbsp;Chronic</span><span aria-hidden="true">Verdant&nbsp;Co.</span><span aria-hidden="true">Highland&nbsp;Retail</span><span aria-hidden="true">Emberline</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CORE VALUE ===================== -->
+    <section id="product" class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-2xl">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">What Z Ratings does</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">
+          Four ways Z&nbsp;Ratings turns data into margin.
+        </h2>
+        <p class="reveal mt-4 text-[17px] leading-relaxed text-body" data-delay="2">
+          Every purchase order becomes a financial decision backed by evidence — not noisy reports or gut feel.
+        </p>
+      </div>
+
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- card 1 -->
+        <article class="reveal card-hover rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="1">
+          <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand-50 border border-brand/15 text-brand-700">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h16M8 16V9m4 7V6m4 10v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 class="mt-4 font-display font-bold text-ink text-[19px]">Brand Ratings</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">Simple, letter-grade scoring that cuts through noisy financial data — so you instantly know which brands deserve shelf space.</p>
+        </article>
+        <!-- card 2 -->
+        <article class="reveal card-hover rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="2">
+          <span class="grid place-items-center h-11 w-11 rounded-xl bg-amber-50 border border-amber/20 text-amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 4.3 2.6 18a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 class="mt-4 font-display font-bold text-ink text-[19px]">SKU Risk Analysis</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">See exactly what to back, what to limit, and what to avoid — down to the individual SKU and its sell-through trajectory.</p>
+        </article>
+        <!-- card 3 -->
+        <article class="reveal card-hover rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="3">
+          <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand-50 border border-brand/15 text-brand-700">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3M5 12H2m20 0h-3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 class="mt-4 font-display font-bold text-ink text-[19px]">Cash Recovery</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">Move aging inventory faster with discount and liquidation analysis that recovers trapped cash before it becomes a write-off.</p>
+        </article>
+        <!-- card 4 -->
+        <article class="reveal card-hover rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="4">
+          <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand-50 border border-brand/15 text-brand-700">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 10h18M7 3v4m10-4v4M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 class="mt-4 font-display font-bold text-ink text-[19px]">Inventory Budgets</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">Weekly credit allowances tell you precisely how much to spend per brand — keeping purchasing aligned with cash flow.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUCT DEEP-DIVE (TABLE) ===================== -->
+    <section class="bg-ink text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-[.07]" style="background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 1px);background-size:26px 26px"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-[.85fr_1.15fr] gap-12 items-center">
+        <div>
+          <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand font-semibold">The decision layer</p>
+          <h2 class="reveal mt-3 font-display font-extrabold text-white text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">
+            A clearer path from data to purchase order.
+          </h2>
+          <p class="reveal mt-4 text-[16.5px] leading-relaxed text-white/70" data-delay="2">
+            Z&nbsp;Ratings ranks every SKU on the metrics that move cash — velocity, margin, discount dependency, and aging risk — then tells you the action to take.
+          </p>
+          <ul class="reveal mt-7 space-y-3 text-[15px]" data-delay="3">
+            <li class="flex gap-3"><span class="text-brand mt-0.5">✓</span> Rank SKUs by recoverable cash, not just units sold</li>
+            <li class="flex gap-3"><span class="text-brand mt-0.5">✓</span> Flag dead-stock risk weeks before it locks up capital</li>
+            <li class="flex gap-3"><span class="text-brand mt-0.5">✓</span> Get a recommended action on every line item</li>
+          </ul>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="reveal btn mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-[15px] font-bold text-white shadow-lift hover:bg-brand-600" data-delay="4">
+            Request Analysis
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="reveal" data-delay="2">
+          <div class="rounded-2xl border border-white/10 bg-white/[.04] backdrop-blur shadow-float overflow-hidden">
+            <div class="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <p class="font-display font-bold text-[15px]">SKU risk board · this week</p>
+              <span class="num text-[11px] text-white/50">41 SKUs · sorted by action</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left num text-[13px]">
+                <thead class="text-white/45 text-[11px] uppercase tracking-wider">
+                  <tr class="border-b border-white/10">
+                    <th class="font-medium px-5 py-2.5">SKU</th>
+                    <th class="font-medium px-3 py-2.5">Velocity</th>
+                    <th class="font-medium px-3 py-2.5">Aging</th>
+                    <th class="font-medium px-3 py-2.5">Grade</th>
+                    <th class="font-medium px-5 py-2.5 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="[&>tr]:border-b [&>tr]:border-white/5">
+                  <tr class="hover:bg-white/[.03]">
+                    <td class="px-5 py-3 font-sans font-medium text-white">Live Resin · 1g</td>
+                    <td class="px-3 py-3 text-brand">High</td>
+                    <td class="px-3 py-3 text-white/70">12d</td>
+                    <td class="px-3 py-3"><span class="text-brand font-semibold">A</span></td>
+                    <td class="px-5 py-3 text-right"><span class="rounded-md bg-brand/20 text-brand px-2 py-0.5 text-[11px] font-semibold">Expand</span></td>
+                  </tr>
+                  <tr class="hover:bg-white/[.03]">
+                    <td class="px-5 py-3 font-sans font-medium text-white">Gummies · 100mg</td>
+                    <td class="px-3 py-3 text-brand">High</td>
+                    <td class="px-3 py-3 text-white/70">9d</td>
+                    <td class="px-3 py-3"><span class="text-brand font-semibold">A-</span></td>
+                    <td class="px-5 py-3 text-right"><span class="rounded-md bg-brand/20 text-brand px-2 py-0.5 text-[11px] font-semibold">Expand</span></td>
+                  </tr>
+                  <tr class="hover:bg-white/[.03]">
+                    <td class="px-5 py-3 font-sans font-medium text-white">Vape Cart · Sativa</td>
+                    <td class="px-3 py-3 text-white/70">Steady</td>
+                    <td class="px-3 py-3 text-white/70">28d</td>
+                    <td class="px-3 py-3"><span class="text-amber font-semibold">B</span></td>
+                    <td class="px-5 py-3 text-right"><span class="rounded-md bg-amber/20 text-amber px-2 py-0.5 text-[11px] font-semibold">Hold</span></td>
+                  </tr>
+                  <tr class="hover:bg-white/[.03]">
+                    <td class="px-5 py-3 font-sans font-medium text-white">Pre-Roll 5pk</td>
+                    <td class="px-3 py-3 text-amber">Slowing</td>
+                    <td class="px-3 py-3 text-white/70">44d</td>
+                    <td class="px-3 py-3"><span class="text-amber font-semibold">C+</span></td>
+                    <td class="px-5 py-3 text-right"><span class="rounded-md bg-amber/20 text-amber px-2 py-0.5 text-[11px] font-semibold">Discount</span></td>
+                  </tr>
+                  <tr class="hover:bg-white/[.03]">
+                    <td class="px-5 py-3 font-sans font-medium text-white">Tincture · 30ml</td>
+                    <td class="px-3 py-3 text-risk">Low</td>
+                    <td class="px-3 py-3 text-white/70">71d</td>
+                    <td class="px-3 py-3"><span class="text-risk font-semibold">D</span></td>
+                    <td class="px-5 py-3 text-right"><span class="rounded-md bg-risk/20 text-risk px-2 py-0.5 text-[11px] font-semibold">Liquidate</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section id="how" class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-2xl">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">How it works</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">From raw data to confident buying in three steps.</h2>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-3 gap-5">
+        <article class="reveal relative rounded-2xl border border-line bg-surface p-7 shadow-card" data-delay="1">
+          <span class="num text-[13px] font-semibold text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1 border border-brand/15">01</span>
+          <h3 class="mt-5 font-display font-bold text-ink text-[20px]">Connect your data</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">Share sales, inventory, and purchasing exports. We normalize the noise into one clean performance picture.</p>
+        </article>
+        <article class="reveal relative rounded-2xl border border-line bg-surface p-7 shadow-card" data-delay="2">
+          <span class="num text-[13px] font-semibold text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1 border border-brand/15">02</span>
+          <h3 class="mt-5 font-display font-bold text-ink text-[20px]">Get rated &amp; ranked</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">Every brand and SKU receives a rating, a recommended budget, and an action — expand, hold, discount, or liquidate.</p>
+        </article>
+        <article class="reveal relative rounded-2xl border border-line bg-surface p-7 shadow-card" data-delay="3">
+          <span class="num text-[13px] font-semibold text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1 border border-brand/15">03</span>
+          <h3 class="mt-5 font-display font-bold text-ink text-[20px]">Buy with confidence</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-body">Walk into every purchasing decision with a number behind it — and recover cash trapped in slow-moving stock.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== AUDIENCES ===================== -->
+    <section id="audiences" class="bg-surface border-y border-line">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+        <div class="max-w-2xl">
+          <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">Why buyers care</p>
+          <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">Built for the people who answer for the numbers.</h2>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-3 gap-5">
+          <article class="reveal card-hover rounded-2xl border border-line bg-paper p-7" data-delay="1">
+            <h3 class="font-display font-bold text-ink text-[20px]">Retail buyers</h3>
+            <p class="mt-2 text-[14.5px] leading-relaxed text-body">Stop second-guessing the next PO. Know which brands earn shelf space and which to pass on — with evidence to back it.</p>
+          </article>
+          <article class="reveal card-hover rounded-2xl border border-line bg-paper p-7" data-delay="2">
+            <h3 class="font-display font-bold text-ink text-[20px]">Multi-store operators</h3>
+            <p class="mt-2 text-[14.5px] leading-relaxed text-body">Allocate budget across thousands of SKUs and locations with one consistent standard, not scattered spreadsheets.</p>
+          </article>
+          <article class="reveal card-hover rounded-2xl border border-line bg-paper p-7" data-delay="3">
+            <h3 class="font-display font-bold text-ink text-[20px]">Owners &amp; finance</h3>
+            <p class="mt-2 text-[14.5px] leading-relaxed text-body">Protect cash flow and margin with a defensible, repeatable framework for every inventory dollar you commit.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PACKAGES ===================== -->
+    <section id="packages" class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-2xl">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">Packages</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">Choose the level of intelligence your operation needs.</h2>
+      </div>
+
+      <div class="mt-12 grid lg:grid-cols-4 sm:grid-cols-2 gap-4 items-stretch">
+        <!-- Bronze -->
+        <article class="reveal card-hover flex flex-col rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="1">
+          <p class="num text-[11px] uppercase tracking-widest text-muted">Bronze</p>
+          <h3 class="mt-1 font-display font-bold text-ink text-[22px]">Core Platform</h3>
+          <p class="mt-2 text-[13.5px] text-body leading-relaxed">The essential rating engine for confident purchasing.</p>
+          <ul class="mt-5 mb-6 space-y-2.5 text-[14px] text-body">
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Brand ratings</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> SKU risk assessment</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Inventory credit allowance</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Discount analysis</li>
+          </ul>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn mt-auto w-full inline-flex items-center justify-center rounded-full border border-line bg-paper px-5 py-2.5 text-[14px] font-semibold text-ink hover:border-brand/40">Get Bronze Details</a>
+        </article>
+
+        <!-- Silver (featured) -->
+        <article class="reveal card-hover relative flex flex-col rounded-2xl border-2 border-brand bg-surface p-6 shadow-lift" data-delay="2">
+          <span class="absolute -top-3 left-6 rounded-full bg-brand px-3 py-1 text-[11px] font-bold text-white num uppercase tracking-wider">Most popular</span>
+          <p class="num text-[11px] uppercase tracking-widest text-brand-700">Silver</p>
+          <h3 class="mt-1 font-display font-bold text-ink text-[22px]">Expanded Intelligence</h3>
+          <p class="mt-2 text-[13.5px] text-body leading-relaxed">Everything in Bronze, plus market context.</p>
+          <ul class="mt-5 mb-6 space-y-2.5 text-[14px] text-body">
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> All Bronze features</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Industry insights</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Competitor analysis</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Broader decision support</li>
+          </ul>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn mt-auto w-full inline-flex items-center justify-center rounded-full bg-brand px-5 py-2.5 text-[14px] font-bold text-white hover:bg-brand-600 shadow-card">Get Silver Details</a>
+        </article>
+
+        <!-- Gold -->
+        <article class="reveal card-hover flex flex-col rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="3">
+          <p class="num text-[11px] uppercase tracking-widest text-muted">Gold</p>
+          <h3 class="mt-1 font-display font-bold text-ink text-[22px]">Most Comprehensive</h3>
+          <p class="mt-2 text-[13.5px] text-body leading-relaxed">Full analyst partnership for serious operators.</p>
+          <ul class="mt-5 mb-6 space-y-2.5 text-[14px] text-body">
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> All Silver features</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Weekly &amp; monthly reporting</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Dedicated analyst meetings</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Priority support</li>
+          </ul>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn mt-auto w-full inline-flex items-center justify-center rounded-full border border-line bg-paper px-5 py-2.5 text-[14px] font-semibold text-ink hover:border-brand/40">Talk to Sales</a>
+        </article>
+
+        <!-- Brand Analysis -->
+        <article class="reveal card-hover flex flex-col rounded-2xl border border-dashed border-brand/40 bg-brand-50/50 p-6" data-delay="4">
+          <p class="num text-[11px] uppercase tracking-widest text-brand-700">One-off</p>
+          <h3 class="mt-1 font-display font-bold text-ink text-[22px]">Brand Analysis</h3>
+          <p class="mt-2 text-[13.5px] text-body leading-relaxed">A pre-purchase review without a subscription.</p>
+          <ul class="mt-5 mb-6 space-y-2.5 text-[14px] text-body">
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Pre-purchase brand assessment</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Product guidance</li>
+            <li class="flex gap-2.5"><span class="text-brand">✓</span> Suggested budget</li>
+          </ul>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn mt-auto w-full inline-flex items-center justify-center rounded-full bg-ink px-5 py-2.5 text-[14px] font-bold text-white hover:bg-brand-700">Request Analysis</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section class="bg-ink text-white relative overflow-hidden">
+      <div class="absolute inset-0 mesh opacity-30"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+        <div class="max-w-2xl">
+          <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand font-semibold">What operators say</p>
+          <h2 class="reveal mt-3 font-display font-extrabold text-white text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">Clarity and confidence, in their words.</h2>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-3 gap-5">
+          <figure class="reveal flex flex-col h-full rounded-2xl border border-white/10 bg-white/[.04] p-7 backdrop-blur" data-delay="1">
+            <div class="text-brand num text-[14px] mb-3">★★★★★</div>
+            <blockquote class="text-[15.5px] leading-relaxed text-white/85">"Z&nbsp;Ratings completely transformed how we make decisions across our stores. Before, we were relying on gut instinct and scattered reports."</blockquote>
+            <figcaption class="mt-auto pt-6 flex items-center gap-3">
+              <span class="grid place-items-center h-10 w-10 rounded-full bg-brand/20 text-brand font-display font-bold">RT</span>
+              <span><span class="block font-semibold text-white text-[14px]">Richard Talbot</span><span class="block num text-[12px] text-white/50">RELEAF</span></span>
+            </figcaption>
+          </figure>
+          <figure class="reveal flex flex-col h-full rounded-2xl border border-white/10 bg-white/[.04] p-7 backdrop-blur" data-delay="2">
+            <div class="text-brand num text-[14px] mb-3">★★★★★</div>
+            <blockquote class="text-[15.5px] leading-relaxed text-white/85">"As a high-volume store with thousands of SKUs, it was always a challenge to figure out where to focus and how to allocate budget. Now it's obvious."</blockquote>
+            <figcaption class="mt-auto pt-6 flex items-center gap-3">
+              <span class="grid place-items-center h-10 w-10 rounded-full bg-brand/20 text-brand font-display font-bold">KM</span>
+              <span><span class="block font-semibold text-white text-[14px]">Keren&nbsp;M.</span><span class="block num text-[12px] text-white/50">Goat Global</span></span>
+            </figcaption>
+          </figure>
+          <figure class="reveal flex flex-col h-full rounded-2xl border border-white/10 bg-white/[.04] p-7 backdrop-blur" data-delay="3">
+            <div class="text-brand num text-[14px] mb-3">★★★★★</div>
+            <blockquote class="text-[15.5px] leading-relaxed text-white/85">"Z&nbsp;Ratings gave us something we didn't even realize we were missing — clarity and confidence on every purchase."</blockquote>
+            <figcaption class="mt-auto pt-6 flex items-center gap-3">
+              <span class="grid place-items-center h-10 w-10 rounded-full bg-brand/20 text-brand font-display font-bold">TM</span>
+              <span><span class="block font-semibold text-white text-[14px]">Travis Miller</span><span class="block num text-[12px] text-white/50">The Chronic</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="mx-auto max-w-3xl px-5 lg:px-8 py-20 lg:py-28">
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">FAQ</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[34px] sm:text-[42px] leading-[1.05] tracking-tight" data-delay="1">Common questions before a demo.</h2>
+      </div>
+
+      <div class="mt-10 space-y-3">
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">What data do you need to get started?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">Standard sales, inventory, and purchasing exports from your POS or ERP. We normalize and clean the data — you don't need it perfectly formatted.</p>
+        </details>
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">How fast do we see results?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">Most clients receive their first full set of brand ratings and SKU actions within days of connecting data — and weekly thereafter.</p>
+        </details>
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">Is this only for large retailers?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">No. Single stores use the Core Platform to buy smarter, while multi-store operators use Silver and Gold for budget allocation and analyst oversight.</p>
+        </details>
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">Can I try a single brand review first?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">Yes — the one-off Brand Analysis gives you a pre-purchase assessment, product guidance, and a suggested budget without a subscription.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===================== FINAL CTA / DEMO ===================== -->
+    <section id="demo" class="mx-auto max-w-7xl px-5 lg:px-8 pb-24">
+      <div class="reveal relative overflow-hidden rounded-3xl bg-brand text-white px-7 py-12 lg:px-16 lg:py-16 shadow-lift">
+        <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);background-size:24px 24px"></div>
+        <div class="relative grid lg:grid-cols-[1.2fr_.8fr] gap-10 items-center">
+          <div>
+            <h2 class="font-display font-extrabold text-white text-[32px] sm:text-[44px] leading-[1.04] tracking-tightest">See how much clearer your next inventory decision could be.</h2>
+            <p class="mt-4 text-[16.5px] leading-relaxed text-white/85 max-w-lg">Book a live demo and we'll rate one of your brands on the spot — no commitment, just clarity.</p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-bold text-brand-700 shadow-float hover:bg-paper">
+                Book a Demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="tel:+19497870699" class="btn inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-[15px] font-bold text-white hover:bg-white/10">Call (949) 787-0699</a>
+            </div>
+          </div>
+          <div class="lg:justify-self-end">
+            <div class="rounded-2xl bg-white/10 border border-white/20 backdrop-blur p-6 num">
+              <p class="text-[11px] uppercase tracking-widest text-white/70">Demo includes</p>
+              <ul class="mt-3 space-y-2.5 font-sans text-[14.5px] text-white/90">
+                <li class="flex gap-2.5"><span>→</span> A live rating of one of your brands</li>
+                <li class="flex gap-2.5"><span>→</span> A sample SKU risk board</li>
+                <li class="flex gap-2.5"><span>→</span> A recommended inventory budget</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <a href="#top" class="flex items-center gap-2.5" aria-label="Z Ratings home">
+          <img src="assets/logo-full-green.svg" alt="Z Ratings — Inventory Risk Intelligence" class="h-10 w-auto" />
+        </a>
+        <p class="mt-4 max-w-xs text-[14px] leading-relaxed text-body">Inventory risk intelligence for cannabis retailers, operators, and finance teams.</p>
+        <p class="mt-5 num text-[13px] text-muted leading-relaxed">
+          8605 Santa Monica Blvd, #556185<br/>West Hollywood, CA 90069
+        </p>
+      </div>
+
+      <nav aria-label="Footer">
+        <p class="num text-[11px] uppercase tracking-widest text-muted">Explore</p>
+        <ul class="mt-4 space-y-2.5 text-[14.5px] text-body">
+          <li><a class="hover:text-ink transition-colors" href="#product">Product</a></li>
+          <li><a class="hover:text-ink transition-colors" href="howitworks.html">How it works</a></li>
+          <li><a class="hover:text-ink transition-colors" href="solutions.html">Solutions</a></li>
+          <li><a class="hover:text-ink transition-colors" href="about.html">About</a></li>
+          <li><a class="hover:text-ink transition-colors" href="packages.html">Packages</a></li>
+          <li><a class="hover:text-ink transition-colors" href="#faq">FAQ</a></li>
+          <li><a class="hover:text-ink transition-colors" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="num text-[11px] uppercase tracking-widest text-muted">Get in touch</p>
+        <ul class="mt-4 space-y-2.5 text-[14.5px] text-body">
+          <li><a class="hover:text-ink transition-colors" href="tel:+19497870699">(949) 787-0699</a></li>
+          <li><a class="hover:text-ink transition-colors" href="mailto:Sales@ZRatings.net">Sales@ZRatings.net</a></li>
+          <li><a class="btn inline-flex mt-2 items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-[13px] font-semibold text-white hover:bg-brand-600" href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener">Book a Demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-muted">
+        <p>© <span class="num">2026</span> Z Ratings. All rights reserved.</p>
+        <p class="num">Inventory Risk Intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== STRUCTURED DATA (SEO) ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://zratings.net/#org",
+        "name": "Z Ratings",
+        "url": "https://zratings.net/",
+        "description": "Inventory risk intelligence platform for cannabis retailers, operators, and finance teams.",
+        "telephone": "+1-949-787-0699",
+        "email": "Sales@ZRatings.net",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "8605 Santa Monica Blvd, #556185",
+          "addressLocality": "West Hollywood",
+          "addressRegion": "CA",
+          "postalCode": "90069",
+          "addressCountry": "US"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Inventory Risk Intelligence",
+        "provider": { "@id": "https://zratings.net/#org" },
+        "serviceType": "Cannabis retail inventory analytics",
+        "description": "Brand and SKU ratings, inventory budgets, discount analysis, and liquidation guidance.",
+        "offers": [
+          { "@type": "Offer", "name": "Bronze — Core Platform" },
+          { "@type": "Offer", "name": "Silver — Expanded Intelligence" },
+          { "@type": "Offer", "name": "Gold — Most Comprehensive" },
+          { "@type": "Offer", "name": "Brand Analysis — One-Off Review" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What data do you need to get started?", "acceptedAnswer": { "@type": "Answer", "text": "Standard sales, inventory, and purchasing exports from your POS or ERP. We normalize and clean the data for you." } },
+          { "@type": "Question", "name": "How fast do we see results?", "acceptedAnswer": { "@type": "Answer", "text": "Most clients receive their first full set of brand ratings and SKU actions within days of connecting data, and weekly thereafter." } },
+          { "@type": "Question", "name": "Is this only for large retailers?", "acceptedAnswer": { "@type": "Answer", "text": "No. Single stores use the Core Platform while multi-store operators use Silver and Gold for budget allocation and analyst oversight." } },
+          { "@type": "Question", "name": "Can I try a single brand review first?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The one-off Brand Analysis gives a pre-purchase assessment, product guidance, and a suggested budget without a subscription." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===================== INTERACTIONS ===================== -->
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    // Reveal + meters on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .meter').forEach(el => io.observe(el));
+
+    // Count-up stats
+    const fmt = (n) => Number.isInteger(n) ? n.toLocaleString() : n.toFixed(1);
+    const countUp = (el) => {
+      const target = parseFloat(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400; const start = performance.now();
+      const step = (t) => {
+        const p = Math.min((t - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + fmt(Math.round(target * eased)) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const statIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); statIO.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(el => statIO.observe(el));
+  </script>
+</body>
+</html>

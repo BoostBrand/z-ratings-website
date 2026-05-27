@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800;900&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    :root{
+      --paper:#F4F6F2; --surface:#fff; --ink:#0A1A13; --body:#4C5A53; --muted:#8A968F;
+      --line:#E3E8E0; --brand:#0C8B5C; --brand700:#075B3E; --brand50:#E8F4ED; --amber:#C58A21; --risk:#CB4A3B;
+    }
+    html,body{ width:1200px; height:630px; }
+    body{
+      font-family:'Hanken Grotesk',system-ui,sans-serif; color:var(--body);
+      background:var(--paper); position:relative; overflow:hidden;
+    }
+    /* atmospheric background */
+    .mesh{ position:absolute; inset:0;
+      background:
+        radial-gradient(46% 60% at 8% 4%, rgba(12,139,92,.14), transparent 60%),
+        radial-gradient(40% 50% at 98% 0%, rgba(12,139,92,.10), transparent 55%),
+        radial-gradient(60% 70% at 90% 110%, rgba(7,91,62,.12), transparent 60%);
+    }
+    .dots{ position:absolute; inset:0; opacity:.5;
+      background-image:radial-gradient(rgba(10,26,19,.07) 1.4px, transparent 1.4px);
+      background-size:26px 26px;
+    }
+    .grain{ position:absolute; inset:0; opacity:.5; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+    }
+    .frame{ position:relative; height:100%; padding:64px 68px; display:flex; flex-direction:column; justify-content:space-between; }
+
+    .top{ display:flex; align-items:center; gap:16px; }
+    .top img{ height:54px; width:54px; }
+    .brandname{ font-family:'Schibsted Grotesk',sans-serif; font-weight:800; color:var(--ink); font-size:30px; letter-spacing:-.02em; line-height:1; }
+    .tag{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-top:5px; }
+
+    .mid{ display:grid; grid-template-columns:1.18fr .82fr; gap:48px; align-items:center; }
+    .pill{ display:inline-flex; align-items:center; gap:9px; background:var(--brand50); border:1px solid rgba(12,139,92,.28);
+      color:var(--brand700); font-weight:600; font-size:15px; padding:8px 16px; border-radius:999px; }
+    .dot{ width:8px;height:8px;border-radius:999px;background:var(--brand); }
+    h1{ font-family:'Schibsted Grotesk',sans-serif; font-weight:800; color:var(--ink);
+      font-size:62px; line-height:.99; letter-spacing:-.035em; margin-top:22px; }
+    h1 .g{ color:var(--brand); }
+    .sub{ font-size:20px; line-height:1.55; color:var(--body); margin-top:20px; max-width:560px; }
+
+    /* product card */
+    .card{ background:var(--surface); border:1px solid var(--line); border-radius:22px;
+      box-shadow:0 18px 44px -16px rgba(10,26,19,.20), 0 3px 10px rgba(10,26,19,.06); padding:26px; position:relative; }
+    .card .badge{ position:absolute; top:-16px; right:-12px; background:var(--ink); color:#fff; border-radius:14px; padding:10px 14px; transform:rotate(2deg);
+      box-shadow:0 12px 28px -8px rgba(10,26,19,.4); }
+    .card .badge .k{ font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(210,234,222,.8); }
+    .card .badge .v{ font-family:'IBM Plex Mono',monospace; font-size:19px; font-weight:600; line-height:1.1; }
+    .card .label{ font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+    .card h3{ font-family:'Schibsted Grotesk',sans-serif; font-weight:700; color:var(--ink); font-size:25px; margin-top:6px; line-height:1.1; }
+    .card .meta{ font-size:13.5px; color:var(--muted); margin-top:2px; }
+    .grade{ position:absolute; top:26px; right:26px; width:60px;height:60px; border-radius:18px; background:var(--brand50); border:1px solid rgba(12,139,92,.25);
+      display:grid; place-items:center; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:24px; color:var(--brand700); }
+    .rows{ margin-top:22px; display:flex; flex-direction:column; gap:14px; }
+    .row .rt{ display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:6px; }
+    .row .rt .n{ font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--ink); }
+    .bar{ height:9px; border-radius:999px; background:var(--line); overflow:hidden; }
+    .bar i{ display:block; height:100%; border-radius:999px; }
+
+    .bottom{ display:flex; align-items:center; justify-content:space-between; }
+    .url{ font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink); font-weight:600; }
+    .chips{ display:flex; gap:10px; }
+    .chip{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--body); border:1px solid var(--line); background:rgba(255,255,255,.6); border-radius:999px; padding:7px 14px; }
+    .accentbar{ position:absolute; left:0; top:0; bottom:0; width:10px; background:linear-gradient(180deg,var(--brand),var(--brand700)); }
+  </style>
+</head>
+<body>
+  <div class="mesh"></div>
+  <div class="dots"></div>
+  <div class="accentbar"></div>
+  <div class="grain"></div>
+
+  <div class="frame">
+    <div class="top">
+      <img src="assets/z-mark-green.svg" alt="" />
+      <div>
+        <div class="brandname">Z&nbsp;Ratings</div>
+        <div class="tag">Inventory Risk Intelligence</div>
+      </div>
+    </div>
+
+    <div class="mid">
+      <div>
+        <span class="pill"><span class="dot"></span> Built for cannabis retail</span>
+        <h1>Stop buying on instinct.<br/><span class="g">Buy with confidence.</span></h1>
+        <p class="sub">Brand &amp; SKU ratings, inventory budgets, and liquidation guidance that protect cash flow.</p>
+      </div>
+
+      <div class="card">
+        <div class="badge"><div class="k">Weekly credit</div><div class="v">$18,500</div></div>
+        <div class="grade">A-</div>
+        <div class="label">Brand intelligence</div>
+        <h3>Crescent Peak Labs</h3>
+        <div class="meta">Vape &amp; concentrates · 41 SKUs</div>
+        <div class="rows">
+          <div class="row"><div class="rt"><span>Financial strength</span><span class="n">84</span></div><div class="bar"><i style="width:84%;background:var(--brand)"></i></div></div>
+          <div class="row"><div class="rt"><span>Sell-through velocity</span><span class="n">68</span></div><div class="bar"><i style="width:68%;background:var(--brand)"></i></div></div>
+          <div class="row"><div class="rt"><span>Dead-stock risk</span><span class="n">31</span></div><div class="bar"><i style="width:31%;background:var(--risk)"></i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="url">zratings.net</div>
+      <div class="chips">
+        <span class="chip">Brand Ratings</span>
+        <span class="chip">SKU Risk</span>
+        <span class="chip">Cash Recovery</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

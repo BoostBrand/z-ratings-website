@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>How It Works — From Inventory Data to Ratings | Z Ratings</title>
+  <meta name="description" content="See how Z Ratings works: connect your POS/ERP data, we normalize and score every brand and SKU, and you get clear ratings, inventory budgets, and recommended actions — refreshed weekly." />
+  <link rel="canonical" href="https://zratings.net/how-it-works" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0C8B5C" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Z Ratings" />
+  <meta property="og:title" content="How It Works — Z Ratings" />
+  <meta property="og:description" content="Connect data, get ratings, budgets, and actions. See how Z Ratings turns inventory data into confident decisions." />
+  <meta property="og:url" content="https://zratings.net/how-it-works" />
+  <meta property="og:image" content="https://zratings.net/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Z Ratings — inventory risk intelligence for cannabis retail" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How It Works — Z Ratings" />
+  <meta name="twitter:description" content="From inventory data to ratings, budgets, and actions." />
+  <meta name="twitter:image" content="https://zratings.net/og-image.png" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper:   '#F4F6F2',
+            surface: '#FFFFFF',
+            ink:     '#0A1A13',
+            body:    '#4C5A53',
+            muted:   '#8A968F',
+            line:    '#E3E8E0',
+            brand:   { DEFAULT: '#0C8B5C', 600: '#0A7A50', 700: '#075B3E', 50: '#E8F4ED', 100: '#D2EADE' },
+            amber:   { DEFAULT: '#C58A21', 50: '#F7EFDD' },
+            risk:    { DEFAULT: '#CB4A3B', 50: '#F8E4E1' },
+          },
+          fontFamily: {
+            display: ['"Schibsted Grotesk"', 'system-ui', 'sans-serif'],
+            sans:    ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+            mono:    ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+          },
+          boxShadow: {
+            card:  '0 1px 2px rgba(10,26,19,.04), 0 8px 24px -12px rgba(10,26,19,.12)',
+            lift:  '0 2px 4px rgba(10,26,19,.05), 0 24px 48px -20px rgba(12,139,92,.28)',
+            float: '0 12px 32px -8px rgba(10,26,19,.18), 0 2px 8px rgba(10,26,19,.06)',
+          },
+          letterSpacing: { tightest: '-0.04em' },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { --ease-spring: cubic-bezier(.22,1,.36,1); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Hanken Grotesk', system-ui, sans-serif; background: #F4F6F2; color: #4C5A53; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Schibsted Grotesk', system-ui, sans-serif; color: #0A1A13; }
+    .font-display { font-family: 'Schibsted Grotesk', system-ui, sans-serif; }
+    .num { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+
+    .mesh {
+      background:
+        radial-gradient(60% 50% at 12% 8%, rgba(12,139,92,.10), transparent 60%),
+        radial-gradient(50% 40% at 92% 4%, rgba(12,139,92,.07), transparent 55%),
+        radial-gradient(70% 60% at 50% 130%, rgba(7,91,62,.07), transparent 60%);
+    }
+    .grain::before {
+      content:''; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.5; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    }
+    .dotgrid { background-image: radial-gradient(rgba(10,26,19,.06) 1px, transparent 1px); background-size: 22px 22px; }
+
+    .reveal { opacity:0; transform: translateY(18px); transition: opacity .7s var(--ease-spring), transform .7s var(--ease-spring); }
+    .reveal.in { opacity:1; transform: none; }
+    [data-delay="1"]{ transition-delay:.06s } [data-delay="2"]{ transition-delay:.12s } [data-delay="3"]{ transition-delay:.18s } [data-delay="4"]{ transition-delay:.24s }
+
+    .meter > i { display:block; height:100%; width:0; border-radius:999px; transition: width 1.1s var(--ease-spring); }
+    .meter.in > i { width: var(--w); }
+
+    .btn { position:relative; transition: transform .25s var(--ease-spring), box-shadow .25s var(--ease-spring), background-color .2s, color .2s, border-color .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn:focus-visible { outline: 2px solid #0C8B5C; outline-offset: 3px; }
+
+    .card-hover { transition: transform .35s var(--ease-spring), box-shadow .35s var(--ease-spring), border-color .35s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(10,26,19,.05), 0 28px 56px -22px rgba(12,139,92,.30); border-color: rgba(12,139,92,.30); }
+
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #0C8B5C; outline-offset: 2px; border-radius: 6px; }
+
+    details > summary { list-style:none; cursor:pointer; }
+    details > summary::-webkit-details-marker { display:none; }
+    details .chev { transition: transform .3s var(--ease-spring); }
+    details[open] .chev { transform: rotate(45deg); }
+
+    .scroll-mt { scroll-margin-top: 90px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,.meter>i,.btn,.card-hover { transition:none!important; animation:none!important; transform:none!important; opacity:1!important; }
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-brand/20 selection:text-brand-700">
+
+  <!-- ===================== NAV ===================== -->
+  <header class="sticky top-0 z-50">
+    <div class="backdrop-blur-md bg-paper/80 border-b border-line">
+      <nav class="mx-auto max-w-7xl px-5 lg:px-8 h-[68px] flex items-center justify-between" aria-label="Primary">
+        <a href="index.html" class="flex items-center gap-2.5 group" aria-label="Z Ratings home">
+          <img src="assets/z-mark-green.svg" alt="" width="36" height="36" class="h-9 w-9 transition-transform group-hover:-translate-y-0.5" />
+          <span class="leading-none">
+            <span class="block font-display font-extrabold text-ink text-[17px] tracking-tight">Z&nbsp;Ratings</span>
+            <span class="block num text-[10px] uppercase tracking-[.18em] text-muted mt-0.5">Inventory Risk Intelligence</span>
+          </span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-body">
+          <li><a class="hover:text-ink transition-colors" href="index.html#product">Product</a></li>
+          <li><a class="text-ink font-semibold" href="howitworks.html" aria-current="page">How it works</a></li>
+          <li><a class="hover:text-ink transition-colors" href="solutions.html">Solutions</a></li>
+          <li><a class="hover:text-ink transition-colors" href="about.html">About</a></li>
+          <li><a class="hover:text-ink transition-colors" href="packages.html">Packages</a></li>
+          <li><a class="hover:text-ink transition-colors" href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2.5">
+          <a href="index.html" class="btn hidden sm:inline-flex items-center rounded-full border border-line bg-surface px-4 py-2 text-[14px] font-semibold text-ink hover:border-brand/40">Home</a>
+          <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[14px] font-semibold text-white hover:bg-brand-700 shadow-card">
+            Book a Demo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <button id="menuBtn" class="lg:hidden grid place-items-center h-10 w-10 rounded-lg border border-line bg-surface" aria-label="Open menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#0A1A13" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="lg:hidden hidden border-b border-line bg-paper/95 backdrop-blur-md">
+      <div class="mx-auto max-w-7xl px-5 py-4 grid gap-1 text-[15px] font-medium text-body">
+        <a class="py-2.5 hover:text-ink" href="index.html#product">Product</a>
+        <a class="py-2.5 text-ink font-semibold" href="howitworks.html">How it works</a>
+        <a class="py-2.5 hover:text-ink" href="solutions.html">Solutions</a>
+        <a class="py-2.5 hover:text-ink" href="about.html">About</a>
+        <a class="py-2.5 hover:text-ink" href="packages.html">Packages</a>
+        <a class="py-2.5 hover:text-ink" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="relative overflow-hidden mesh grain">
+      <div class="absolute inset-0 dotgrid opacity-40" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-4xl px-5 lg:px-8 pt-16 lg:pt-20 pb-12 lg:pb-14 text-center">
+        <nav class="reveal flex items-center justify-center gap-2 text-[12.5px] num text-muted" aria-label="Breadcrumb">
+          <a href="index.html" class="hover:text-ink">Home</a><span>/</span><span class="text-brand-700">How it works</span>
+        </nav>
+        <p class="reveal mt-5 num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold" data-delay="1">How it works</p>
+        <h1 class="reveal mt-3 font-display font-extrabold text-ink text-[40px] sm:text-[54px] leading-[1.0] tracking-tightest" data-delay="2">
+          From raw inventory data to confident decisions.
+        </h1>
+        <p class="reveal mt-6 max-w-2xl mx-auto text-[17px] leading-[1.7] text-body" data-delay="3">
+          Z&nbsp;Ratings sits on top of the data you already have. Connect it once, and every brand and SKU gets a rating, a budget, and a recommended action — refreshed every week. Here's exactly how.
+        </p>
+        <div class="reveal mt-8 flex flex-wrap justify-center gap-3" data-delay="4">
+          <a href="#steps" class="btn inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-[15px] font-bold text-white shadow-lift hover:bg-brand-600">See the steps</a>
+          <a href="#methodology" class="btn inline-flex items-center gap-2 rounded-full border border-line bg-surface px-6 py-3.5 text-[15px] font-bold text-ink hover:border-brand/40">What's in a rating</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DATA FLOW ===================== -->
+    <section class="border-t border-line bg-surface">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8 py-14 lg:py-16">
+        <div class="grid md:grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch gap-4 md:gap-0">
+          <!-- inputs -->
+          <div class="reveal rounded-2xl border border-line bg-paper p-6" data-delay="1">
+            <p class="num text-[11px] uppercase tracking-widest text-muted">Inputs</p>
+            <h3 class="mt-1 font-display font-bold text-ink text-[18px]">Your data</h3>
+            <ul class="mt-3 space-y-1.5 text-[13.5px] text-body num">
+              <li>· Sales exports</li>
+              <li>· Inventory on hand</li>
+              <li>· Purchasing history</li>
+            </ul>
+          </div>
+          <div class="hidden md:grid place-items-center px-4 text-brand" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <!-- engine -->
+          <div class="reveal rounded-2xl border-2 border-brand bg-brand-50/60 p-6" data-delay="2">
+            <p class="num text-[11px] uppercase tracking-widest text-brand-700">Z Ratings engine</p>
+            <h3 class="mt-1 font-display font-bold text-ink text-[18px]">Normalize &amp; score</h3>
+            <ul class="mt-3 space-y-1.5 text-[13.5px] text-body num">
+              <li>· Clean noisy data</li>
+              <li>· Score brands &amp; SKUs</li>
+              <li>· Model risk &amp; cash</li>
+            </ul>
+          </div>
+          <div class="hidden md:grid place-items-center px-4 text-brand" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <!-- outputs -->
+          <div class="reveal rounded-2xl border border-line bg-paper p-6" data-delay="3">
+            <p class="num text-[11px] uppercase tracking-widest text-muted">Outputs</p>
+            <h3 class="mt-1 font-display font-bold text-ink text-[18px]">What you get</h3>
+            <ul class="mt-3 space-y-1.5 text-[13.5px] text-body num">
+              <li>· Brand &amp; SKU ratings</li>
+              <li>· Weekly budgets</li>
+              <li>· Recommended actions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STEPS TIMELINE ===================== -->
+    <section id="steps" class="scroll-mt mx-auto max-w-5xl px-5 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-2xl">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">The process</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[32px] sm:text-[40px] leading-[1.05] tracking-tight" data-delay="1">Four steps to confident buying.</h2>
+      </div>
+
+      <ol class="mt-14 relative">
+        <!-- connecting line -->
+        <span class="hidden sm:block absolute left-[27px] top-3 bottom-3 w-px bg-line" aria-hidden="true"></span>
+
+        <li class="reveal relative sm:pl-20 pb-12" data-delay="1">
+          <span class="hidden sm:grid place-items-center absolute left-0 top-0 h-14 w-14 rounded-2xl bg-surface border border-line shadow-card num text-[18px] font-semibold text-brand-700">01</span>
+          <span class="sm:hidden num text-[13px] font-semibold text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1 border border-brand/15">01</span>
+          <h3 class="mt-3 sm:mt-1 font-display font-bold text-ink text-[22px]">Connect your data</h3>
+          <p class="mt-2 text-[15.5px] leading-relaxed text-body max-w-2xl">Share standard sales, inventory, and purchasing exports from your POS or ERP — a one-time setup. No integrations to build and no perfectly formatted spreadsheets required; messy real-world data is exactly what we expect.</p>
+          <p class="mt-3 num text-[12.5px] text-muted">Takes ~15 minutes · works with most POS/ERP systems</p>
+        </li>
+
+        <li class="reveal relative sm:pl-20 pb-12" data-delay="1">
+          <span class="hidden sm:grid place-items-center absolute left-0 top-0 h-14 w-14 rounded-2xl bg-surface border border-line shadow-card num text-[18px] font-semibold text-brand-700">02</span>
+          <span class="sm:hidden num text-[13px] font-semibold text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1 border border-brand/15">02</span>
+          <h3 class="mt-3 sm:mt-1 font-display font-bold text-ink text-[22px]">We normalize &amp; score</h3>
+          <p class="mt-2 text-[15.5px] leading-relaxed text-body max-w-2xl">Our engine cleans and standardizes the data, then scores every brand and SKU on the financial factors that actually move cash. The result is one consistent rating standard across your whole catalog — and every location.</p>
+          <p class="mt-3 num text-[12.5px] text-muted">First full set of ratings within days</p>
+        </li>
+
+        <li class="reveal relative sm:pl-20 pb-12" data-delay="1">
+          <span class="hidden sm:grid place-items-center absolute left-0 top-0 h-14 w-14 rounded-2xl bg-surface border border-line shadow-card num text-[18px] font-semibold text-brand-700">03</span>
+          <span class="sm:hidden num text-[13px] font-semibold text-brand-700 bg-brand-50 rounded-lg px-2.5 py-1 border border-brand/15">03</span>
+          <h3 class="mt-3 sm:mt-1 font-display font-bold text-ink text-[22px]">Get ratings, budgets &amp; actions</h3>
+          <p class="mt-2 text-[15.5px] leading-relaxed text-body max-w-2xl">You receive brand and SKU grades, a recommended weekly inventory credit per brand, and a clear action on every line item — expand, hold, discount, or liquidate. Decisions arrive ready to use, not buried in a dashboard.</p>
+          <p class="mt-3 num text-[12.5px] text-muted">Grades · budgets · expand / hold / discount / liquidate</p>
+        </li>
+
+        <li class="reveal relative sm:pl-20" data-delay="1">
+          <span class="hidden sm:grid place-items-center absolute left-0 top-0 h-14 w-14 rounded-2xl bg-brand text-white shadow-lift num text-[18px] font-semibold">04</span>
+          <span class="sm:hidden num text-[13px] font-semibold text-white bg-brand rounded-lg px-2.5 py-1">04</span>
+          <h3 class="mt-3 sm:mt-1 font-display font-bold text-ink text-[22px]">Act, recover &amp; repeat</h3>
+          <p class="mt-2 text-[15.5px] leading-relaxed text-body max-w-2xl">Buy with confidence, clear aging stock, and free up trapped cash. Ratings refresh every week as new data flows in, so your decisions stay current — and improve as the picture sharpens.</p>
+          <p class="mt-3 num text-[12.5px] text-muted">Refreshed weekly · ongoing</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===================== METHODOLOGY ===================== -->
+    <section id="methodology" class="scroll-mt bg-ink text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-[.07]" style="background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 1px);background-size:26px 26px"></div>
+      <div class="relative mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-28">
+        <div class="max-w-2xl">
+          <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand font-semibold">What's in a rating</p>
+          <h2 class="reveal mt-3 font-display font-extrabold text-white text-[32px] sm:text-[40px] leading-[1.05] tracking-tight" data-delay="1">The four factors behind every grade.</h2>
+          <p class="reveal mt-4 text-[16px] leading-relaxed text-white/70" data-delay="2">Each brand and SKU is evaluated on the financial signals that determine whether inventory protects cash flow or quietly erodes it.</p>
+        </div>
+        <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <article class="reveal rounded-2xl border border-white/10 bg-white/[.04] p-6 backdrop-blur" data-delay="1">
+            <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand/15 text-brand"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 14l5-5 4 4 7-7M14 6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-4 font-display font-bold text-white text-[18px]">Sell-through velocity</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-white/65">How quickly units move relative to stock on hand — the clearest signal of real demand.</p>
+            <p class="mt-3 num text-[11px] uppercase tracking-widest text-brand">Emphasis · high</p>
+          </article>
+          <article class="reveal rounded-2xl border border-white/10 bg-white/[.04] p-6 backdrop-blur" data-delay="2">
+            <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand/15 text-brand"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-4 font-display font-bold text-white text-[18px]">Margin contribution</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-white/65">The real profit each brand adds — not just revenue — after discounts and carrying cost.</p>
+            <p class="mt-3 num text-[11px] uppercase tracking-widest text-brand">Emphasis · high</p>
+          </article>
+          <article class="reveal rounded-2xl border border-white/10 bg-white/[.04] p-6 backdrop-blur" data-delay="3">
+            <span class="grid place-items-center h-11 w-11 rounded-xl bg-amber/20 text-amber"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 10-8 8M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-4 font-display font-bold text-white text-[18px]">Discount dependency</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-white/65">How much a brand relies on markdowns to sell — a hidden drag on margin if it's high.</p>
+            <p class="mt-3 num text-[11px] uppercase tracking-widest text-amber">Emphasis · medium</p>
+          </article>
+          <article class="reveal rounded-2xl border border-white/10 bg-white/[.04] p-6 backdrop-blur" data-delay="4">
+            <span class="grid place-items-center h-11 w-11 rounded-xl bg-risk/20 text-risk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 4.3 2.6 18a2 2 0 001.7 3h15.4a2 2 0 001.7-3L13.7 4.3a2 2 0 00-3.4 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-4 font-display font-bold text-white text-[18px]">Aging &amp; dead-stock risk</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-white/65">How much capital is trapped in stock that's slowing down — and how soon it's at risk.</p>
+            <p class="mt-3 num text-[11px] uppercase tracking-widest text-risk">Emphasis · medium</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GRADE SCALE ===================== -->
+    <section class="mx-auto max-w-7xl px-5 lg:px-8 py-20 lg:py-24">
+      <div class="max-w-2xl">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">The rating scale</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[32px] sm:text-[40px] leading-[1.05] tracking-tight" data-delay="1">One grade tells you what to do.</h2>
+        <p class="reveal mt-4 text-[16px] leading-relaxed text-body" data-delay="2">Every brand and SKU lands on a simple A–F scale, and each grade maps to a clear, recommended action.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="reveal rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="1">
+          <div class="flex items-center gap-3"><span class="grid place-items-center h-12 w-12 rounded-2xl bg-brand-50 border border-brand/20 num text-[20px] font-bold text-brand-700">A</span><span class="num text-[12px] uppercase tracking-widest text-brand-700">Expand</span></div>
+          <p class="mt-4 text-[14px] leading-relaxed text-body">Strong performer. Back it heavily and protect shelf space.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="2">
+          <div class="flex items-center gap-3"><span class="grid place-items-center h-12 w-12 rounded-2xl bg-brand-50 border border-brand/20 num text-[20px] font-bold text-brand-700">B</span><span class="num text-[12px] uppercase tracking-widest text-brand-700">Maintain</span></div>
+          <p class="mt-4 text-[14px] leading-relaxed text-body">Solid and steady. Keep stocking at current levels and monitor.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="3">
+          <div class="flex items-center gap-3"><span class="grid place-items-center h-12 w-12 rounded-2xl bg-amber-50 border border-amber/30 num text-[20px] font-bold text-amber">C</span><span class="num text-[12px] uppercase tracking-widest text-amber">Watch / discount</span></div>
+          <p class="mt-4 text-[14px] leading-relaxed text-body">Slowing down. Trim orders and use targeted discounts to move it.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-line bg-surface p-6 shadow-card" data-delay="4">
+          <div class="flex items-center gap-3"><span class="grid place-items-center h-12 w-12 rounded-2xl bg-risk-50 border border-risk/30 num text-[20px] font-bold text-risk">D–F</span><span class="num text-[12px] uppercase tracking-widest text-risk">Limit / liquidate</span></div>
+          <p class="mt-4 text-[14px] leading-relaxed text-body">Eroding cash. Stop reordering and liquidate to recover capital.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CADENCE + SECURITY ===================== -->
+    <section class="bg-surface border-y border-line">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8 py-16 lg:py-20 grid lg:grid-cols-2 gap-10">
+        <div class="reveal rounded-2xl border border-line bg-paper p-7" data-delay="1">
+          <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand-50 border border-brand/15 text-brand-700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3 class="mt-4 font-display font-bold text-ink text-[20px]">A weekly rhythm</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-body">Your first full set of ratings lands within days of connecting data. After that, scores refresh weekly so every purchasing decision reflects the latest performance — no manual rebuilds.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-line bg-paper p-7" data-delay="2">
+          <span class="grid place-items-center h-11 w-11 rounded-xl bg-brand-50 border border-brand/15 text-brand-700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <h3 class="mt-4 font-display font-bold text-ink text-[20px]">Your data stays yours</h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-body">Sales and inventory data is handled privately and encrypted. We use it to generate your ratings — never to share or expose your numbers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="mx-auto max-w-3xl px-5 lg:px-8 py-20 lg:py-24">
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="reveal num text-[12px] uppercase tracking-[.18em] text-brand-700 font-semibold">FAQ</p>
+        <h2 class="reveal mt-3 font-display font-extrabold text-ink text-[32px] sm:text-[40px] leading-[1.05] tracking-tight" data-delay="1">How it works, in detail.</h2>
+      </div>
+      <div class="mt-10 space-y-3">
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">How long does setup take?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">Connecting your data is about a 15-minute, one-time task. Your first full set of brand and SKU ratings typically arrives within a few days.</p>
+        </details>
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">Do I need clean, formatted data?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">No. Standard exports are fine — our engine handles the normalization and cleanup so you don't have to.</p>
+        </details>
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">How often do ratings update?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">Weekly. As new sales and inventory data flows in, brand and SKU grades, budgets, and actions refresh automatically.</p>
+        </details>
+        <details class="reveal group rounded-xl border border-line bg-surface px-5 shadow-card" data-delay="1">
+          <summary class="flex items-center justify-between gap-4 py-4 font-display font-semibold text-ink text-[16px]">What exactly do I receive?<span class="chev shrink-0 text-brand text-[22px] leading-none">+</span></summary>
+          <p class="pb-5 -mt-1 text-[14.5px] leading-relaxed text-body">Brand and SKU letter grades, a recommended weekly inventory credit per brand, and a clear action on every item. See the <a href="solutions.html" class="text-brand-700 underline underline-offset-2 hover:text-brand">solutions</a> and <a href="packages.html" class="text-brand-700 underline underline-offset-2 hover:text-brand">packages</a> pages for the full scope.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===================== FINAL CTA ===================== -->
+    <section class="mx-auto max-w-7xl px-5 lg:px-8 pb-24">
+      <div class="reveal relative overflow-hidden rounded-3xl bg-brand text-white px-7 py-12 lg:px-16 lg:py-16 shadow-lift">
+        <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);background-size:24px 24px"></div>
+        <div class="relative grid lg:grid-cols-[1.2fr_.8fr] gap-10 items-center">
+          <div>
+            <h2 class="font-display font-extrabold text-white text-[32px] sm:text-[44px] leading-[1.04] tracking-tightest">Watch it work on your own data.</h2>
+            <p class="mt-4 text-[16.5px] leading-relaxed text-white/85 max-w-lg">Book a live demo and we'll run one of your brands through the process — from raw export to rating and recommended action.</p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener" class="btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-[15px] font-bold text-brand-700 shadow-float hover:bg-paper">Book a Demo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="solutions.html" class="btn inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-[15px] font-bold text-white hover:bg-white/10">Explore Solutions</a>
+            </div>
+          </div>
+          <div class="lg:justify-self-end">
+            <div class="rounded-2xl bg-white/10 border border-white/20 backdrop-blur p-6 num">
+              <p class="text-[11px] uppercase tracking-widest text-white/70">Demo includes</p>
+              <ul class="mt-3 space-y-2.5 font-sans text-[14.5px] text-white/90">
+                <li class="flex gap-2.5"><span>→</span> A live rating of one of your brands</li>
+                <li class="flex gap-2.5"><span>→</span> A sample SKU risk board</li>
+                <li class="flex gap-2.5"><span>→</span> A recommended inventory budget</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-line bg-surface">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8 py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <a href="index.html" class="flex items-center gap-2.5" aria-label="Z Ratings home">
+          <img src="assets/logo-full-green.svg" alt="Z Ratings — Inventory Risk Intelligence" class="h-10 w-auto" />
+        </a>
+        <p class="mt-4 max-w-xs text-[14px] leading-relaxed text-body">Inventory risk intelligence for cannabis retailers, operators, and finance teams.</p>
+        <p class="mt-5 num text-[13px] text-muted leading-relaxed">8605 Santa Monica Blvd, #556185<br/>West Hollywood, CA 90069</p>
+      </div>
+      <nav aria-label="Footer">
+        <p class="num text-[11px] uppercase tracking-widest text-muted">Explore</p>
+        <ul class="mt-4 space-y-2.5 text-[14.5px] text-body">
+          <li><a class="hover:text-ink transition-colors" href="index.html#product">Product</a></li>
+          <li><a class="hover:text-ink transition-colors" href="howitworks.html">How it works</a></li>
+          <li><a class="hover:text-ink transition-colors" href="solutions.html">Solutions</a></li>
+          <li><a class="hover:text-ink transition-colors" href="about.html">About</a></li>
+          <li><a class="hover:text-ink transition-colors" href="packages.html">Packages</a></li>
+          <li><a class="hover:text-ink transition-colors" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="num text-[11px] uppercase tracking-widest text-muted">Get in touch</p>
+        <ul class="mt-4 space-y-2.5 text-[14.5px] text-body">
+          <li><a class="hover:text-ink transition-colors" href="tel:+19497870699">(949) 787-0699</a></li>
+          <li><a class="hover:text-ink transition-colors" href="mailto:Sales@ZRatings.net">Sales@ZRatings.net</a></li>
+          <li><a class="btn inline-flex mt-2 items-center gap-1.5 rounded-full bg-brand px-4 py-2 text-[13px] font-semibold text-white hover:bg-brand-600" href="https://calendar.app.google/giPEH33FLhr1Arbe9" target="_blank" rel="noopener">Book a Demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-muted">
+        <p>© <span class="num">2026</span> Z Ratings. All rights reserved.</p>
+        <p class="num">Inventory Risk Intelligence</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== STRUCTURED DATA (SEO) ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zratings.net/" },
+          { "@type": "ListItem", "position": 2, "name": "How it works", "item": "https://zratings.net/how-it-works" }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "How Z Ratings turns inventory data into ratings and actions",
+        "description": "Connect your POS/ERP data, Z Ratings normalizes and scores every brand and SKU, and you receive ratings, weekly budgets, and recommended actions refreshed weekly.",
+        "step": [
+          { "@type": "HowToStep", "position": 1, "name": "Connect your data", "text": "Share standard sales, inventory, and purchasing exports from your POS or ERP — a one-time setup." },
+          { "@type": "HowToStep", "position": 2, "name": "Normalize & score", "text": "Z Ratings cleans the data and scores every brand and SKU on the financial factors that move cash." },
+          { "@type": "HowToStep", "position": 3, "name": "Get ratings, budgets & actions", "text": "Receive brand and SKU grades, a recommended weekly inventory credit, and a clear action on every item." },
+          { "@type": "HowToStep", "position": 4, "name": "Act, recover & repeat", "text": "Buy with confidence and clear aging stock; ratings refresh weekly as new data flows in." }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How long does setup take?", "acceptedAnswer": { "@type": "Answer", "text": "Connecting data is about a 15-minute one-time task, and your first ratings arrive within a few days." } },
+          { "@type": "Question", "name": "Do I need clean, formatted data?", "acceptedAnswer": { "@type": "Answer", "text": "No. Standard exports are fine; our engine handles normalization and cleanup." } },
+          { "@type": "Question", "name": "How often do ratings update?", "acceptedAnswer": { "@type": "Answer", "text": "Weekly. Grades, budgets, and actions refresh as new sales and inventory data flows in." } },
+          { "@type": "Question", "name": "What exactly do I receive?", "acceptedAnswer": { "@type": "Answer", "text": "Brand and SKU letter grades, a recommended weekly inventory credit per brand, and a clear action on every item." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .meter').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
